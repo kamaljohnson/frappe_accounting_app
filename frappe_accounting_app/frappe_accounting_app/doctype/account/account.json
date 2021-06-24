@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "autoname": "field:account_name",
+ "creation": "2021-06-25 00:32:16.550332",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "account_name",
+  "balance_type",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_account"
+ ],
+ "fields": [
+  {
+   "fieldname": "account_name",
+   "fieldtype": "Data",
+   "label": "Account Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "balance_type",
+   "fieldtype": "Select",
+   "label": "Balance Type",
+   "options": "Debit\nCredit"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Account"
+  },
+  {
+   "fieldname": "parent_account",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Parent Account",
+   "options": "Account"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2021-06-25 00:39:27.070901",
+ "modified_by": "Administrator",
+ "module": "Frappe Accounting App",
+ "name": "Account",
+ "nsm_parent_field": "parent_account",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
