@@ -8,6 +8,7 @@
  "field_order": [
   "account_name",
   "balance_type",
+  "company",
   "lft",
   "rgt",
   "is_group",
@@ -18,14 +19,18 @@
   {
    "fieldname": "account_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Account Name",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "balance_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Balance Type",
-   "options": "Debit\nCredit"
+   "options": "Debit\nCredit",
+   "reqd": 1
   },
   {
    "fieldname": "lft",
@@ -62,12 +67,20 @@
    "hidden": 1,
    "label": "Parent Account",
    "options": "Account"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "company",
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-06-25 00:39:27.070901",
+ "modified": "2021-06-25 06:44:51.091605",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Account",
