@@ -80,7 +80,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-06-25 06:44:51.091605",
+ "modified": "2021-07-06 16:40:55.688513",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Account",
@@ -100,6 +100,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

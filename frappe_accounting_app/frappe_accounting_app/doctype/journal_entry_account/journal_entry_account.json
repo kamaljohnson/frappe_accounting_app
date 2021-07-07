@@ -19,11 +19,13 @@
    "reqd": 1
   },
   {
+   "default": "0",
    "fieldname": "credit",
    "fieldtype": "Currency",
    "label": "Credit"
   },
   {
+   "default": "0",
    "fieldname": "debit",
    "fieldtype": "Currency",
    "label": "Debit"
@@ -32,7 +34,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-07-02 11:49:50.129963",
+ "modified": "2021-07-07 10:41:50.228257",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Journal Entry Account",
