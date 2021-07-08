@@ -7,7 +7,6 @@ from frappe.model.document import Document
 
 class JournalEntry(Document):
 
-
 	def before_save(self):
 		""" 
 		1. Checks if total credits is equal to total debits | throws error msg 
@@ -24,7 +23,6 @@ class JournalEntry(Document):
 		if self.total_credit != self.total_debit:
 			frappe.throw(_('Total credit should be equal to total debit'))
 
-	# TODO: create all the gl_entries curresponding to the accounting entries
 	def on_submit(self):
 		"""
 		1. Creates all the Ledger entries curresponding to each accounting entry
