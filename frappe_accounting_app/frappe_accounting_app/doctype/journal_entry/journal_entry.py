@@ -24,6 +24,33 @@ class JournalEntry(Document):
 		if self.total_credit != self.total_debit:
 			frappe.throw(_('Total credit should be equal to total debit'))
 
-	# TODO: on_submit(): check if total_debt = total_credits
+	# TODO: create all the gl_entries curresponding to the accounting entries
 	def on_submit(self):
-		pass
+		"""
+		1. Creates all the Ledger entries curresponding to each accounting entry
+		2. Set corresponding fiscal year for each ledger entries
+		"""
+
+		fiscal_year = frappe.get_all(
+			'Fiscal Year',
+			filters = {
+				'from_date': ['<=', self.posting_date],
+				'to_date': ['>=', self.posting_date]
+			},
+			pluck = 'name'
+		)
+
+		for accounting_entry in self.get('accounting_entries'):
+			ledger_entry_doc = frappe.get_doc({
+				'doctype': 'Ledger Entry',
+				'posting_date': self.posting_date,
+				'account': accounting_entry.account,
+				'debit': accounting_entry.debit,
+				'credit': accounting_entry.credit,
+				'voucher_type': 'Journal Entry',
+				'voucher_number': self.name,
+				'fiscal_year': fiscal_year[0],
+				'company': self.company
+			})
+			ledger_entry_doc.insert()
+		
