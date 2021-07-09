@@ -22,3 +22,48 @@ class SalesInvoice(Document):
 			grand_total += amount
 
 		self.grand_total = grand_total
+
+	
+	def on_submit(self):
+		"""
+		1. Set fiscal year for ledger entries
+		2. Create ledger entries
+		"""
+
+		print('HERE')
+
+		fiscal_year = frappe.get_all(
+			'Fiscal Year',
+			filters = {
+				'from_date': ['<=', self.posting_date],
+				'to_date': ['>=', self.posting_date]
+			},
+			pluck = 'name'
+		)
+
+		ledger_entry_doc1 = frappe.get_doc({
+			'doctype': 'Ledger Entry',
+			'posting_date': self.posting_date,
+			'account': 'Sales',
+			'debit': self.grand_total,
+			'credit': 0,
+			'voucher_type': 'Sales Invoice',
+			'voucher_number': self.name,
+			'fiscal_year': fiscal_year[0],
+			'company': self.company
+		})
+
+		ledger_entry_doc2 = frappe.get_doc({
+			'doctype': 'Ledger Entry',
+			'posting_date': self.posting_date,
+			'account': 'Debtors',
+			'debit': 0,
+			'credit': self.grand_total,
+			'voucher_type': 'Sales Invoice',
+			'voucher_number': self.name,
+			'fiscal_year': fiscal_year[0],
+			'company': self.company
+		})
+
+		ledger_entry_doc1.insert()
+		ledger_entry_doc2.insert()
