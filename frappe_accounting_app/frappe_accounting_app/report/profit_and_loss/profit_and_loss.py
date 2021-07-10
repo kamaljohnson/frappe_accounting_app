@@ -10,58 +10,48 @@ def execute(filters=None):
 	columns = get_columns(filters)
 	data = get_data(filters)
 
-	# basic layout for P&L statement
-	#	Sno	Account				Amount
-	#	1	Income.
-	#	2	 Indirect Sales		200
-	# 	3	 Direct Sales		150
-	# 		 ...income sources
-	#	4	Total Income		350
-	#	5	Expenses.
-	#	6	 Indirect Expenses	50
-	#	7	 Direct Expenses	100
-	# 		 ...expense sources
-	#	8	Total Expenses		150
-	#	9	Net Profit			200
-
 	return columns, data
 
 def get_columns(filters):
-	columns =[{
-		"fieldname" : "account",
-		"label" : _("Account"),
-		"fieldtype" : "Link",
-		"options" : "Account",
-		"width" : 300
-	},
-	{
-		"fieldname" : "amount",
-		"label" : _("Amount"),
-		"fieldtype" : "Currency",
-		"width" : 300
-	}]
+	columns =[
+		{
+			"fieldname" : "account",
+			"label" : _("Account"),
+			"fieldtype" : "Link",
+			"options" : "Account",
+			"width" : 300
+		},
+		{
+			"fieldname" : "amount",
+			"label" : _("Amount"),
+			"fieldtype" : "Currency",
+			"width" : 300
+		},
+		{
+			"fieldname": "total",
+			"label": _("Total"),
+			"fieldtype": "Currency",
+			"width": 300
+		}
+	]
 
 	return columns
 
 def get_data(filters):
+	"""
+	1. Get all income and expense entries from the ledger
+	2. Compute profit / loss
+	3. Generate data accourding to layout
+	"""
 	data = []
 
-	income_data = []
-	expense_data = []
-
+	# region Get income data using income accounts from ledger entries
 	total_income = 0
-	total_expense = 0
 
-	# [x] TODO: get all income accounts
 	income_accounts = get_descendants_of("Account", "Income")
 	income_accounts.append("Income")
 
-	# [x] TODO: get all expense accounts
-	expense_accounts = get_descendants_of("Account", "Expenses")
-	expense_accounts.append("Expenses")
-
-	# TODO: get ledger entries for all income accounts
-	income_data.append({
+	data.append({
 		'indent': 0,
 		'account': 'Income',
 	})
@@ -77,28 +67,80 @@ def get_data(filters):
 			'sum(debit) as amount',
 		]
 	):
-		print('Account: {}'.format(ledger_entry.account))
-		print('Amount: {}'.format(ledger_entry.amount))
-		income_data.append({
+		data.append({
 			'intend': 1,
 			'account': ledger_entry.account,
 			'amount': ledger_entry.amount,
+			'parent_account': 'Income'
 		})
 
-	# TODO: get ledger entries for all expense accounts
-	expense_data.append({
+		total_income += ledger_entry.amount
+
+	data.append({})
+	data.append({
+		'intend': 0,
+		'account': 'Total Income',
+		'total': total_income
+	})
+	data.append({})
+
+	# endregion
+
+	# region Set expense data using expense account ledger entries
+	total_expense = 0
+
+	expense_accounts = get_descendants_of("Account", "Expenses")
+	expense_accounts.append("Expenses")
+
+	data.append({
 		'indent': 0,
 		'account': 'Expenses'
 	})
 
-	data = income_data + expense_data
+	for ledger_entry in frappe.get_all(
+		'Ledger Entry',
+		group_by='account',
+		filters={
+			'account': ['in', expense_accounts]
+		},
+		fields=[
+			'account',
+			'sum(credit) as amount',
+		]
+	):
+		data.append({
+			'intend': 1,
+			'account': ledger_entry.account,
+			'amount': ledger_entry.amount,
+			'parent_account': 'Expenese'
+		})
 
-	print('Data: {}'.format(data))
+		total_expense += ledger_entry.amount
 
-	# TODO: compute p/l
+	data.append({})
+	data.append({
+		'intend': 0,
+		'account': 'Total Expenses',
+		'total': total_expense
+	})
+	data.append({})
+	# endregion
+
+	# region Compute profit / loss
+
 	if total_income >= total_expense: 	# Profit
 		net_profit = total_income - total_expense
+		data.append({
+			'account': 'Net Profit',
+			'total': net_profit
+		})
 	else:								# Loss
 		net_loss = total_expense - total_income
+		data.append({
+			'account': 'Net Loss',
+			'total': net_loss
+		})
+
+	# endregion
 
 	return data
