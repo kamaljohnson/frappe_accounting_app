@@ -3,12 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <h2>{{ company_name }}</h2>
+    <style>
+        .center-container {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 100px;
+            align-content: center;
+        }
+        .center-container h2 {
+            color: gray;
+        }
+        .item-searchbar {
+            margin: 0px;
+            margin-top: 5px;
+        }
+        .item-searchbar input {
+            width: 100%;
+            height: 40px;
+            font-size: 17px;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        Welcome the our shop,
-        you are early 😅.
-    </p>
+<!--TODO: heading-->
+<!--TODO: create an item search bar-->
+    <div class="center-container">
+        <h2>{{ company_name }}</h2>
+        <div class="item-searchbar">
+            <input type="text" placeholder="Search here.."/>
+        </div>
+    </div>
 </body>
 </html>
