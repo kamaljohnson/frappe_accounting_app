@@ -5,6 +5,7 @@
     <title>Catalog</title>
     <style>
         .center-container {
+            max-width: 800px;
             margin: auto;
             align-content: center;
         }
@@ -21,6 +22,9 @@
             color: gray;
             margin: 0px;
             margin-bottom: 20px;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 10px;
         }
         .item-slip img {
             max-width: 100px;
@@ -33,7 +37,7 @@
 </head>
 <body>
     <div class="center-container">
-        <h2>{{ company_name }}</h2>
+        <h2>{{ company_name }} Catalog</h2>
         <div class="catalog-list-container">
             {% for item in items %}
                 <div class="item-slip">
