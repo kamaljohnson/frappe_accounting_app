@@ -5,5 +5,6 @@ def get_context(context):
     context.result_items = frappe.get_all('Item', fields=['image', 'name', 'standard_selling_rate'])
     return context
 
-def search(text):
-    print('searching for {}'.format(text))
+@frappe.whitelist(allow_guest=True)
+def search_text(text):
+    print('{} searching...'.format(text))

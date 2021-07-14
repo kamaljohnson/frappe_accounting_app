@@ -1,0 +1,29 @@
+.center-container {
+    max-width: 800px;
+    margin: auto;
+    align-content: center;
+}
+.center-container h2 {
+    color: gray;
+}
+.catalog-list-container {
+    margin-top: 20px;
+    padding: 5px;
+}
+.item-slip {
+    display: flex;
+    flex-direction: row;
+    color: gray;
+    margin: 0px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.item-slip img {
+    max-width: 100px;
+    max-height: 150px;
+}
+.item-slip info {
+    flex-direciton: column;
+}

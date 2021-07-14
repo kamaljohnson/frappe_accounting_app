@@ -1,0 +1,18 @@
+{%  extends "templates/web.html" %}
+{% block title %}{{ _("Catalog") }}{% endblock %}
+{% block page_content %}
+    <div class="center-container">
+        <h2>{{ company_name }} Catalog</h2>
+        <div class="catalog-list-container">
+            {% for item in items %}
+                <div class="item-slip">
+                    <img src="{{ item.image }}" alt="{{ item.name }}">
+                    <div class="info">
+                        <div>{{ item.name }}</div>
+                        <div>{{ item.standard_selling_rate }} Rs</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
