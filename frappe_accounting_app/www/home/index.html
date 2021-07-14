@@ -8,8 +8,8 @@
                 id="search_input"
                 type="text"
                 placeholder="What are you looking for ?"
+                onchange="search_input_text_changed()"
             />
-            <button type="button" id="test_button">Test</button>
         </div>
         {% if result_items != [] %}
         <div class="results">
