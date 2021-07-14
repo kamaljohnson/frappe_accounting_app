@@ -36,16 +36,47 @@
             font-weight: bold;
             border: none;
         }
+        .results {
+            margin-top: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .item-slip {
+            display: flex;
+            flex-direction: row;
+            color: gray;
+            margin: 0px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .item-slip img {
+            max-width: 100px;
+            max-height: 150px;
+        }
+        .item-slip info {
+            flex-direciton: column;
+        }
     </style>
 </head>
 <body>
-<!--TODO: heading-->
-<!--TODO: create an item search bar-->
     <div class="center-container">
         <h2>{{ company_name }}</h2>
         <div class="item-searchbar">
             <input type="text" placeholder="What are you looking for ?"/>
         </div>
+        {% if result_items != [] %}
+        <div class="results">
+            {% for item in result_items %}
+            <div class="item-slip">
+                <img src="{{ item.image }}" alt="{{ item.name }}">
+                <div class="info">
+                    <div>{{ item.name }}</div>
+                    <div>{{ item.standard_selling_rate }} Rs</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         <button onclick="location.href='http://accounting.test:8000/catalog'">
             Catalog
         </button>
