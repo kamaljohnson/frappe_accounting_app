@@ -60,7 +60,6 @@ function get_search_results(items, search_text) {
     search_text = search_text.toLowerCase();
     items.forEach(item => {
         item.name = item.name.toLowerCase();
-        console.log('s: ' + search_text + ' i: ' + item.name)
         if(item.name.search(search_text) != -1) {
             result_items.push(item);
         }
