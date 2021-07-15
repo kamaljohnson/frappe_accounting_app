@@ -1,0 +1,26 @@
+#container {
+    max-width: 800px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#item_image {
+    margin-bottom: 20px;
+    max-height: 300px;
+}
+#add_to_cart_button {
+    border-radius: 10px;
+    padding: 6px;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-top: 20px;
+    background: #0080ff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+

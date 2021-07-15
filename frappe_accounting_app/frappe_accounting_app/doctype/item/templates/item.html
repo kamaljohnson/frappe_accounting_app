@@ -1,7 +1,30 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<h1>{{ title }}</h1>
+<div id="container">
+    <div class="py-20 row">
+        <div class="col-sm-4">
+            <img id="item_image" src="{{ image }}" alt="{{ title }}">
+        </div>
+        <div class="col">
+            <h3>{{ title }}</h3>
+            <div>
+                <span class="lead">{{ standard_selling_rate }} Rs</span>
+            </div>
+            <p>{{ description }}</p>
+            <button id="add_to_cart_button" type="button">Add to Cart</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<!-- js should be loaded in body! -->>
+<script>
+    {% include "frappe_accounting_app/frappe_accounting_app/doctype/item/templates/item.js" %}
+</script>
+<style>
+    {% include "frappe_accounting_app/frappe_accounting_app/doctype/item/templates/item.css" %}
+</style>
 {% endblock %}
 
 <!-- this is a sample default web page template -->
