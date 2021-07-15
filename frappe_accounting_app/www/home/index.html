@@ -1,29 +1,16 @@
 {%  extends "templates/web.html" %}
 {% block title %}{{ _("Home") }}{% endblock %}
 {% block page_content %}
-    <div class="center-container">
+    <div id="canvas" class="center-container">
         <h2>{{ company_name }}</h2>
         <div class="item-searchbar">
             <input
                 id="search_input"
                 type="text"
                 placeholder="What are you looking for ?"
-                onchange="search_input_text_changed()"
             />
         </div>
-        {% if result_items != [] %}
-        <div class="results">
-            {% for item in result_items %}
-            <div class="item-slip">
-                <img src="{{ item.image }}" alt="{{ item.name }}">
-                <div class="info">
-                    <div>{{ item.name }}</div>
-                    <div>{{ item.standard_selling_rate }} Rs</div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+        <div id="results" data-items="{{ items }}"> </div>
         <button onclick="location.href='http://accounting.test:8000/catalog'">
             Catalog
         </button>
