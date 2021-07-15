@@ -6,5 +6,5 @@ def get_context(context):
         frappe.throw(_("Log in to access this page."), frappe.PermissionError)
 
     context.company_name = frappe.get_all('Company')[0]['name']
-    context.items = frappe.get_all('Item', fields=['image', 'name', 'standard_selling_rate'])
+    context.items = frappe.get_all('Item', fields=['image', 'name', 'standard_selling_rate', 'route'])
     return context
