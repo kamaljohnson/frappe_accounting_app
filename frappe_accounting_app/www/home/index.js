@@ -46,7 +46,7 @@ async function search(search_text) {
 
     let url = document.location.origin + '/api/resource/Item';
     url += '?fields=';
-    url += '["name","image","standard_selling_rate"]';
+    url += '["name","image","standard_selling_rate", "route"]';
 
     fetch(url, options).then(validateResponse).then(res => {
         items = res.data;
@@ -84,10 +84,16 @@ function show_search_results(result_items) {
             "<div>" + result_item.name + "</div>" +
             "<div>" + result_item.standard_selling_rate +  " Rs</div>";
 
+        item_slip.addEventListener('click', function() {
+            on_item_slip_click(result_item);
+        });
+
         item_slip.append(item_image);
         item_slip.append(item_info);
         results_doc.append(item_slip);
     })
+}
 
-
+function on_item_slip_click(item) {
+    window.location.href = "http://accounting.test:8000/" + item.route;
 }
