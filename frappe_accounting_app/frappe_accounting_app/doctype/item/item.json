@@ -13,7 +13,8 @@
   "standard_selling_rate",
   "image",
   "description",
-  "disabled"
+  "disabled",
+  "route"
  ],
  "fields": [
   {
@@ -65,11 +66,17 @@
    "fieldname": "disabled",
    "fieldtype": "Check",
    "label": "Disabled"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-13 20:27:52.266317",
+ "modified": "2021-07-15 15:05:02.451930",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Item",
@@ -88,6 +95,7 @@
    "write": 1
   }
  ],
+ "route": "items",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
