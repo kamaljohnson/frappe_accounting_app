@@ -4,7 +4,7 @@
     padding-right: 20px;
     align-content: center;
     margin: auto;
-    margin-top: 50px;
+    height: 100%;
 }
 
 #item_image {
@@ -24,3 +24,15 @@
     border: none;
 }
 
+#view_cart_button {
+    border-radius: 10px;
+    padding: 6px;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-top: 20px;
+    color: #0080ff;
+    background: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}

@@ -12,7 +12,20 @@
                 <span class="lead">{{ standard_selling_rate }} Rs</span>
             </div>
             <p>{{ description }}</p>
-            <button id="add_to_cart_button" type="button">Add to Cart</button>
+            <div id="bottom-segment">
+                <button
+                        id="add_to_cart_button"
+                        onclick="on_add_to_cart_click()"
+                        type="button">
+                    Add to Cart
+                </button>
+                <button
+                        id="view_cart_button"
+                        onclick="on_view_cart_click()"
+                        type="button">
+                    View Cart
+                </button>
+            </div>
         </div>
     </div>
 </div>
