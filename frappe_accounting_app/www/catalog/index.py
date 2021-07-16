@@ -8,3 +8,9 @@ def get_context(context):
     context.company_name = frappe.get_all('Company')[0]['name']
     context.items = frappe.get_all('Item', fields=['image', 'name', 'standard_selling_rate', 'route'])
     return context
+
+def get_customer(user):
+    print('user: {}'.format(user))
+
+def create_new_customer(user):
+    pass
