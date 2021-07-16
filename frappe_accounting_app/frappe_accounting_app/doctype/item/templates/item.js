@@ -1,7 +1,7 @@
 
 function on_add_to_cart_click() {
     frappe.call({
-        method: "frappe_accounting_app.frappe_accounting_app.doctype.item.item.add_item_to_cart",
+        method: "frappe_accounting_app.frappe_accounting_app.doctype.cart.cart.add_item_to_cart",
         args: {
             "item_code": '{{ doc.item_code }}',
         }
