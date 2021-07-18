@@ -11,6 +11,7 @@ def get_context(context):
     context.items = frappe.get_all('Item', fields=['image', 'name', 'standard_selling_rate'])
     return context
 
+@frappe.whitelist(allow_guest=False)
 def get_session_customer(user_name):
     """
     If a customer object is present for the given user returns the same,

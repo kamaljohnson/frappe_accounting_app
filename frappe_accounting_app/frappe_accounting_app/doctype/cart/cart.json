@@ -6,21 +6,13 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "user",
+  "customer",
   "items",
   "invoice",
   "status",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "user",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "User",
-   "options": "User",
-   "reqd": 1
-  },
   {
    "fieldname": "items",
    "fieldtype": "Table",
@@ -50,12 +42,19 @@
    "options": "Cart",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2021-07-16 09:14:31.069274",
+ "modified": "2021-07-16 19:30:35.873863",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Cart",
