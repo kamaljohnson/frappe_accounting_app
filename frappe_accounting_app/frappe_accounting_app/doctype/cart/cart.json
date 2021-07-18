@@ -10,8 +10,9 @@
   "items",
   "invoice",
   "status",
-  "amended_from",
-  "route"
+  "grand_total",
+  "route",
+  "amended_from"
  ],
  "fields": [
   {
@@ -56,12 +57,18 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Route"
+  },
+  {
+   "default": "0",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total"
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-18 10:37:33.425546",
+ "modified": "2021-07-19 04:01:49.516906",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Cart",

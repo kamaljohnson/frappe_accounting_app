@@ -56,14 +56,25 @@ def add_item_to_cart(item_name):
 			'item': item_name,
 			'quantity': 1
 		})
-		cart = frappe.get_doc({
+		active_cart = frappe.get_doc({
 			'doctype': 'Cart',
 			'customer': customer.name,
 			'items': [cart_item]
 		})
-		cart.insert()
+		active_cart.insert()
 		frappe.db.commit()
 		cart_item_added_flag = True
+
+	# Update cart item amount and grand total
+	grand_total = 0
+
+	for cart_item in active_cart.items:
+		cart_item.amount = cart_item.rate * cart_item.quantity
+		grand_total += cart_item.amount
+		cart_item.save()
+
+	active_cart.grand_total = grand_total
+	active_cart.save()
 
 	msg = 'Added item to cart' if cart_item_added_flag else 'Could not add item to cart'
 	frappe.msgprint(msg=_(msg), alert=True)

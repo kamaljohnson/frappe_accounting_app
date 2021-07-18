@@ -48,7 +48,7 @@
   },
   {
    "fieldname": "standard_selling_rate",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Standard Selling Rate"
   },
   {
@@ -76,7 +76,7 @@
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-15 15:05:02.451930",
+ "modified": "2021-07-19 04:25:44.566224",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Item",

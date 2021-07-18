@@ -1,7 +1,16 @@
 {% extends "templates/web.html" %}
 
 {% block page_content %}
-<h1>{{ title }}</h1>
+<div id="data_block" data-cart-name="{{name}}"></div>
+<div id="cart_items"></div>
+<div id="total_amount"></div>
+<button id="checkout_button">Checkout</button>
 {% endblock %}
-
-<!-- this is a sample default web page template -->
+{% block script %}
+<script>
+    {% include "frappe_accounting_app/frappe_accounting_app/doctype/cart/templates/cart.js" %}
+</script>
+<style>
+    {% include "frappe_accounting_app/frappe_accounting_app/doctype/cart/templates/cart.css" %}
+</style>
+{% endblock %}

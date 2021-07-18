@@ -1,0 +1,12 @@
+#checkout_button {
+    border-radius: 10px;
+    padding: 6px;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-top: 20px;
+    background: #0080ff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
