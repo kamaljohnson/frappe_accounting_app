@@ -2,11 +2,11 @@
 # For license information, please see license.txt
 
 import frappe
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 
 from frappe_accounting_app.www.home.index import get_session_customer
 
-class Cart(Document):
+class Cart(WebsiteGenerator):
 	pass
 
 @frappe.whitelist(allow_guest=False)
@@ -43,7 +43,7 @@ def add_item_to_cart(item_name):
 			'item': item_name,
 			'quantity': 1
 		})
-		
+
 		active_cart.append('items', cart_item)
 		active_cart.save()
 		return cart_item
