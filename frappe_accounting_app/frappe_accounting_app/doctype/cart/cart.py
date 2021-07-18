@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.website.website_generator import WebsiteGenerator
-
+from frappe import _
 from frappe_accounting_app.www.home.index import get_session_customer
 
 class Cart(WebsiteGenerator):
@@ -25,6 +25,7 @@ def add_item_to_cart(item_name):
 			'status': ['=', 'Active']
 		}
 	)
+	cart_item_added_flag = False
 
 	if len(active_carts) != 0:
 		# create cart item and add it to the active cart.
@@ -35,18 +36,20 @@ def add_item_to_cart(item_name):
 				# cart item present in cart. so updating quantity
 				cart_item.quantity += 1
 				cart_item.save()
-				return cart_item
+				cart_item_added_flag = True
+				break;
 
-		# cart item not present in cart, so creating new one.
-		cart_item = frappe.get_doc({
-			'doctype': 'Cart Item',
-			'item': item_name,
-			'quantity': 1
-		})
+		if not cart_item_added_flag:
+			# cart item not present in cart, so creating new one.
+			cart_item = frappe.get_doc({
+				'doctype': 'Cart Item',
+				'item': item_name,
+				'quantity': 1
+			})
 
-		active_cart.append('items', cart_item)
-		active_cart.save()
-		return cart_item
+			active_cart.append('items', cart_item)
+			active_cart.save()
+			cart_item_added_flag = True
 	else:
 		cart_item = frappe.get_doc({
 			'doctype': 'Cart Item',
@@ -60,4 +63,7 @@ def add_item_to_cart(item_name):
 		})
 		cart.insert()
 		frappe.db.commit()
-		return cart_item
+		cart_item_added_flag = True
+
+	msg = 'Added item to cart' if cart_item_added_flag else 'Could not add item to cart'
+	frappe.msgprint(msg=_(msg), alert=True)
