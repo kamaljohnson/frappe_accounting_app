@@ -26,11 +26,14 @@ function get_cart(cart) {
 
     fetch(url, options).then(validateResponse).then(res => {
         cart = res.data;
-        show_cart_items(cart.items);
+        show_cart(cart);
     });
 }
 
-function show_cart_items(cart_items) {
+function show_cart(cart) {
+    cart_items = cart.items;
+    grand_total = cart.grand_total;
+
     cart_items_doc = document.getElementById('cart_items');
     cart_items_doc.innerHTML = '';
 
@@ -52,11 +55,30 @@ function show_cart_items(cart_items) {
 
         cart_items_doc.append(cart_item_slip_doc);
     });
+
+    grand_total_element = document.getElementById('total_amount');
+    grand_total_element.innerHTML = 'Grand Total: ' + grand_total + ' Rs';
 }
 
 function show_cart_item(item, quantity, amount, cart_item_slip_doc) {
-    console.log('Item: ' + item.name + ' ' + quantity + ' ' + amount);
-    cart_item_slip_doc.innerHTML = item.name;
+    item_image_element = document.createElement('IMG');
+    item_image_element.className = 'image';
+    item_image_element.src = item.image;
+
+    item_info_element = document.createElement('DIV');
+    item_info_element.className = 'item-info';
+    item_info_element.innerHTML = "" +
+            "<div class='item-name'>" + item.name + "</div>" +
+            "<div>" + item.description + "</div>" +
+            "<div class='quantity'>" + "Qty: " + quantity + "</div>"
+
+    amount_element = document.createElement('DIV');
+    amount_element.className = 'amount';
+    amount_element.innerHTML = amount + ' Rs';
+
+    cart_item_slip_doc.append(item_image_element);
+    cart_item_slip_doc.append(item_info_element);
+    cart_item_slip_doc.append(amount_element);
 }
 
 function on_checkout_button_click() {
