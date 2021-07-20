@@ -4,7 +4,10 @@ var api_req_headers = {
 if (window.csrf_token)
 	api_req_headers['X-Frappe-CSRF-Token'] = window.csrf_token;
 
-get_cart();
+get_cart().then(res => {
+    cart = res.data;
+    show_cart(cart);
+});
 
 // used to validate all url fetch responses
 function validateResponse(res) {
@@ -14,7 +17,7 @@ function validateResponse(res) {
     }
 }
 
-function get_cart(cart) {
+function get_cart() {
     cart_name = get_data('cartName')
 
     const options = {
@@ -24,10 +27,7 @@ function get_cart(cart) {
 
     let url = document.location.origin + '/api/resource/Cart/' + cart_name;
 
-    fetch(url, options).then(validateResponse).then(res => {
-        cart = res.data;
-        show_cart(cart);
-    });
+    return fetch(url, options).then(validateResponse);
 }
 
 function show_cart(cart) {
@@ -82,6 +82,26 @@ function show_cart_item(item, quantity, amount, cart_item_slip_doc) {
 }
 
 function on_checkout_button_click() {
+    get_cart().then(res => {
+        cart = res.data;
+        create_sales_invoice(cart);
+    })
+}
+
+async function create_sales_invoice(cart) {
+    res = await frappe.call({
+        method: "frappe_accounting_app.frappe_accounting_app.doctype.cart.cart.create_sales_invoice",
+        args: {
+            'cart': cart,
+        }
+    })
+
+    sales_invoice = res.data.sales_invoice;
+
+    console.log('Sales invoice: ' + sales_invoice);
+}
+
+function show_sales_invoice(print_format_url) {
 
 }
 

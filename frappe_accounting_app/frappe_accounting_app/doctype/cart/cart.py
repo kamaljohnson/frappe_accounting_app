@@ -5,6 +5,9 @@ import frappe
 from frappe.website.website_generator import WebsiteGenerator
 from frappe import _
 from frappe_accounting_app.www.home.index import get_session_customer
+from frappe.utils.response import build_response
+from datetime import datetime
+import json
 
 class Cart(WebsiteGenerator):
 	pass
@@ -78,3 +81,38 @@ def add_item_to_cart(item_name):
 
 	msg = 'Added item to cart' if cart_item_added_flag else 'Could not add item to cart'
 	frappe.msgprint(msg=_(msg), alert=True)
+
+@frappe.whitelist(allow_guest=False)
+def create_sales_invoice(cart):
+	cart = json.loads(cart)
+
+	sales_invoice = frappe.get_doc({
+		'doctype': 'Sales Invoice',
+		'customer': cart['customer'],
+		'company': frappe.get_all('Company')[0].name,  # setting company to the default one
+		'grand_total': cart['grand_total'],
+		'posting_date': datetime.now().date()
+	}).insert()
+	frappe.db.commit()
+
+	for cart_item in cart['items']:
+		sales_invoice_item = frappe.get_doc({
+			'doctype': 'Sales Invoice Item',
+			'item': cart_item['item'],
+			'quantity': cart_item['quantity']
+		})
+		sales_invoice.append('items', sales_invoice_item)
+
+	sales_invoice.save()
+	sales_invoice.submit()
+
+	cart = frappe.get_doc('Cart', cart['name'])
+	cart.invoice = sales_invoice.name
+	cart.status = 'Processed'
+	cart.save()
+
+	frappe.local.response.update({'data': {
+		'sales_invoice': sales_invoice.name
+	}})
+
+	return build_response('json')
