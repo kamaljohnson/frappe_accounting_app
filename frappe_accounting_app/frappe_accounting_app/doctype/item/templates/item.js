@@ -14,10 +14,29 @@ function validateResponse(res) {
     }
 }
 
-function set_customer_name() {
-    customer_name = 'Administrator';
-//    TODO: fetch customer name using api
-    set_data('customerName', customer_name);
+async function set_customer_name() {
+    customer_name = 'not set';
+
+    session_user = await get_user();
+
+    let url = document.location.origin + '/api/resource/Customer/';
+    url += '?filters=';
+	url += '[["user", "=", "' + session_user + '"]]';
+
+	const options = {
+		method: 'GET',
+		headers: api_req_headers,
+	};
+
+    fetch(url, options).then(validateResponse).then(res => {
+        customers = res.data;
+        if(customers.length == 1) {
+            customer_name = customers[0].name;
+            set_data('customerName', customer_name);
+        } else {
+            frappe.msgprint('Customer not set. please log in.');
+        }
+    });
 }
 
 function on_add_to_cart_click() {
@@ -30,7 +49,6 @@ function on_add_to_cart_click() {
 }
 
 function on_view_cart_click() {
-//  TODO: check if active cart of the customer present. else popup msg
     customer_name = get_data('customerName');
     console.log('Customer: ' + customer_name);
 
@@ -47,12 +65,18 @@ function on_view_cart_click() {
         active_carts = res.data;
         if(active_carts.length != 0){
             active_cart = active_carts[0];
-            console.log(active_cart)
             window.location.href = "http://accounting.test:8000/carts/" + active_cart.name;
         } else {
             frappe.msgprint('Cart is empty, please add items to cart.');
         }
     });
+}
+
+async function get_user() {
+    let url = document.location.origin + '/api/method/frappe.auth.get_logged_user';
+	return fetch(url)
+		.then(validateResponse)
+		.then((res) => res.message);
 }
 
 function get_data(key) {
