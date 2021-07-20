@@ -97,12 +97,16 @@ async function create_sales_invoice(cart) {
     })
 
     sales_invoice = res.data.sales_invoice;
-
-    console.log('Sales invoice: ' + sales_invoice);
+    show_sales_invoice(sales_invoice)
 }
 
-function show_sales_invoice(print_format_url) {
-
+function show_sales_invoice(sales_invoice) {
+    console.log('Sales invoice: ' + sales_invoice);
+    let url = document.location.origin + '/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Invoice&';
+	url += 'name=' + sales_invoice + '&';
+	url += 'format=Sales%20Invoice&no_letterhead=0&_lang=en';
+	win = window.open(url, '_blank');
+	win.focus();
 }
 
 function get_data(key) {
