@@ -17,9 +17,8 @@ class PurchaseInvoice(Document):
         grand_total = 0
 
         for purchase_invoice_item in self.get('items'):
-            purchase_invoice_item_doc = frappe.get_doc(purchase_invoice_item)
-            amount = flt(purchase_invoice_item_doc.rate) * purchase_invoice_item_doc.quantity
-            purchase_invoice_item_doc.amount = amount
+            amount = flt(purchase_invoice_item.rate) * purchase_invoice_item.quantity
+            purchase_invoice_item.amount = amount
             grand_total += amount
 
         self.grand_total = grand_total
