@@ -5,3 +5,4 @@
 tags
 frappe_accounting_app/docs/current
 .idea/
+__pycache__/
