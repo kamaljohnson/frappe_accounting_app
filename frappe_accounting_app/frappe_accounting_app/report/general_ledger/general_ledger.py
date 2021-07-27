@@ -26,6 +26,21 @@ def get_columns() -> list:
 			'width': 200
 		},
 		{
+			'fieldname': 'voucher_type',
+			'label': _('Voucher Type'),
+			'fieldtype': 'Link',
+			'options': 'DocType',
+			'width': 200
+		},
+		{
+			'fieldname': 'voucher_number',
+			'label': _('Voucher No'),
+			'fieldtype': 'Dynamic Link',
+			'options': 'voucher_type',
+			'width': 200
+		}
+		,
+		{
 			'fieldname': 'credit',
 			'label': _('Credit'),
 			'fieldtype': 'Currancy',
@@ -53,12 +68,16 @@ def get_data() -> list:
 			'account',
 			'posting_date',
 			'credit',
-			'debit'
+			'debit',
+			'voucher_type',
+			'voucher_number'
 		]
 	):
 		data.append({
 			'account': ledger_entry.account,
 			'posting_date': ledger_entry.posting_date,
+			'voucher_type': ledger_entry.voucher_type,
+			'voucher_number': ledger_entry.voucher_number,
 			'credit': ledger_entry.credit,
 			'debit': ledger_entry.debit
 		})
