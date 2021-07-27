@@ -6,7 +6,7 @@ from frappe import _
 
 def execute(filters=None):
 	columns = get_columns()
-	data = get_data()
+	data = get_data(filters)
 
 	return columns, data
 
@@ -55,7 +55,7 @@ def get_columns() -> list:
 	]
 	return columns
 
-def get_data() -> list:
+def get_data(filters=None) -> list:
 	"""
 	1. Get all ledger entries
 	2. Generate data according to layout
@@ -64,6 +64,7 @@ def get_data() -> list:
 
 	for ledger_entry in frappe.get_all(
 		'Ledger Entry',
+		filters=filters,
 		fields=[
 			'account',
 			'posting_date',
