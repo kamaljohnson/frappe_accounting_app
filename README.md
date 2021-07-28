@@ -21,3 +21,12 @@ An app to manage all the accounting needs of a company
 
 ## Sales Invoice
 ![Sales Invoice](https://github.com/kamaljohnson/frappe_accounting_app/blob/main/screenshots/sales-invoice.png)
+
+## Profit and Loss Report
+![Profit and Loss Report](https://github.com/kamaljohnson/frappe_accounting_app/blob/main/screenshots/profit-and-loss-report.png)
+
+## Balance Sheet Report
+![Balance Sheet Report](https://github.com/kamaljohnson/frappe_accounting_app/blob/main/screenshots/balance-sheet-report.png)
+
+## General Ledger Report
+![General Ledger Report](https://github.com/kamaljohnson/frappe_accounting_app/blob/main/screenshots/general-ledger-report.png)
