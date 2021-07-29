@@ -7,8 +7,10 @@
  "engine": "InnoDB",
  "field_order": [
   "supplier",
+  "column_break",
   "company",
   "posting_date",
+  "section_break",
   "items",
   "grand_total",
   "amended_from"
@@ -56,12 +58,20 @@
    "options": "Purchase Invoice",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-07-02 13:23:39.701403",
+ "modified": "2021-07-29 10:42:07.440646",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Purchase Invoice",
