@@ -29,15 +29,6 @@ class JournalEntry(Document):
 		2. Set corresponding fiscal year for each ledger entries
 		"""
 
-		fiscal_year = frappe.get_all(
-			'Fiscal Year',
-			filters = {
-				'from_date': ['<=', self.posting_date],
-				'to_date': ['>=', self.posting_date]
-			},
-			pluck = 'name'
-		)
-
 		for accounting_entry in self.get('accounting_entries'):
 			ledger_entry_doc = frappe.get_doc({
 				'doctype': 'Ledger Entry',
@@ -47,7 +38,6 @@ class JournalEntry(Document):
 				'credit': accounting_entry.credit,
 				'voucher_type': 'Journal Entry',
 				'voucher_number': self.name,
-				'fiscal_year': fiscal_year[0],
 				'company': self.company
 			})
 			ledger_entry_doc.insert()

@@ -29,15 +29,6 @@ class PurchaseInvoice(Document):
 		2. Create ledger entries
 		"""
 
-        fiscal_year = frappe.get_all(
-            'Fiscal Year',
-            filters={
-                'from_date': ['<=', self.posting_date],
-                'to_date': ['>=', self.posting_date]
-            },
-            pluck='name'
-        )
-
         ledger_entry_doc1 = frappe.get_doc({
             'doctype': 'Ledger Entry',
             'posting_date': self.posting_date,
@@ -46,7 +37,6 @@ class PurchaseInvoice(Document):
             'credit': self.grand_total,
             'voucher_type': 'Purchase Invoice',
             'voucher_number': self.name,
-            'fiscal_year': fiscal_year[0],
             'company': self.company
         })
 
@@ -58,7 +48,6 @@ class PurchaseInvoice(Document):
             'credit': 0,
             'voucher_type': 'Purchase Invoice',
             'voucher_number': self.name,
-            'fiscal_year': fiscal_year[0],
             'company': self.company
         })
 

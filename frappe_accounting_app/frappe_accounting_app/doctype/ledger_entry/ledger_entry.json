@@ -68,13 +68,12 @@
    "fieldname": "fiscal_year",
    "fieldtype": "Link",
    "label": "Fiscal Year",
-   "options": "Fiscal Year",
-   "reqd": 1
+   "options": "Fiscal Year"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-08 14:01:47.578587",
+ "modified": "2021-07-29 11:07:16.253509",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Ledger Entry",
