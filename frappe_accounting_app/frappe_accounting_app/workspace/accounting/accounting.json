@@ -2,7 +2,7 @@
  "cards_label": "Elements",
  "category": "Modules",
  "charts": [],
- "creation": "2021-07-28 11:19:26.338930",
+ "creation": "2021-07-30 22:42:06.379935",
  "developer_mode_only": 0,
  "disable_user_customization": 0,
  "docstatus": 0,
@@ -130,7 +130,7 @@
    "type": "Link"
   }
  ],
- "modified": "2021-07-30 14:05:13.407458",
+ "modified": "2021-07-30 22:42:06.379935",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Accounting",
@@ -168,6 +168,5 @@
    "link_to": "General Ledger",
    "type": "Report"
   }
- ],
- "shortcuts_label": ""
+ ]
 }
