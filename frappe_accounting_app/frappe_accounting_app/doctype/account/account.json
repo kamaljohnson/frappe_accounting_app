@@ -7,8 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "account_name",
-  "balance_type",
+  "account_type",
   "company",
+  "balance_type",
   "lft",
   "rgt",
   "is_group",
@@ -29,8 +30,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Balance Type",
-   "options": "Debit\nCredit",
-   "reqd": 1
+   "options": "Debit\nCredit"
   },
   {
    "fieldname": "lft",
@@ -75,12 +75,19 @@
    "label": "company",
    "options": "Company",
    "reqd": 1
+  },
+  {
+   "fieldname": "account_type",
+   "fieldtype": "Select",
+   "label": "Account Type",
+   "options": "Income\nExpense\nAsset\nLiability",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-07-06 16:40:55.688513",
+ "modified": "2021-07-30 19:21:43.134604",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Account",
