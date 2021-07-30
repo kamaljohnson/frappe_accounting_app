@@ -14,7 +14,8 @@
   "rgt",
   "is_group",
   "old_parent",
-  "parent_account"
+  "parent_account",
+  "report_type"
  ],
  "fields": [
   {
@@ -82,12 +83,18 @@
    "label": "Account Type",
    "options": "Income\nExpense\nAsset\nLiability\nReceivable\nPayable",
    "reqd": 1
+  },
+  {
+   "fieldname": "report_type",
+   "fieldtype": "Select",
+   "label": "Report Type",
+   "options": "Balance Sheet\nProfit and Loss"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-07-30 19:50:19.726069",
+ "modified": "2021-07-30 19:55:52.096775",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Account",
