@@ -48,7 +48,14 @@ def get_data(filters):
 	# region Get income data using income accounts from ledger entries
 	total_income = 0
 
-	income_accounts = get_descendants_of("Account", "Income")
+	income_accounts = frappe.get_all(
+		'Account',
+		filters = {
+			'balance_type': ['=', 'Credit'],
+			'report_type': ['=', 'Profit and Loss']
+		},
+		pluck = 'name'
+	)
 	income_accounts.append("Income")
 
 	data.append({
@@ -89,7 +96,14 @@ def get_data(filters):
 	# region Set expense data using expense account ledger entries
 	total_expense = 0
 
-	expense_accounts = get_descendants_of("Account", "Expenses")
+	expense_accounts = frappe.get_all(
+		'Account',
+		filters = {
+			'balance_type': ['=', 'Debit'],
+			'report_type': ['=', 'Profit and Loss']
+		},
+		pluck = 'name'
+	)
 	expense_accounts.append("Expenses")
 
 	data.append({
