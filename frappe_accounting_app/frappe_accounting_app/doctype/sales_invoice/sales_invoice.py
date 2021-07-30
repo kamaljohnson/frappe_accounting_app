@@ -29,10 +29,36 @@ class SalesInvoice(Document):
 		2. Create ledger entries
 		"""
 
+		sales_accounts = frappe.get_all(
+			'Account',
+			filters = {
+				'account_type': ['=', 'Income']
+			},
+			pluck = 'name'
+		)
+
+		debtors_accounts = frappe.get_all(
+			'Account',
+			filters = {
+				'account_type': ['=', 'Receivable']
+			},
+			pluck = 'name'
+		)
+
+		if len(sales_accounts) == 0:
+			frappe.throw(_('There is no income account set'))
+			return
+		if len(debtors_accounts) == 0:
+			frappe.throw(_('There is no receivable account set'))
+			return
+
+		sales_account = sales_accounts[0]
+		debtors_account = debtors_accounts[0]
+
 		ledger_entry_doc1 = frappe.get_doc({
 			'doctype': 'Ledger Entry',
 			'posting_date': self.posting_date,
-			'account': 'Sales',
+			'account': sales_account,
 			'debit': self.grand_total,
 			'credit': 0,
 			'voucher_type': 'Sales Invoice',
@@ -43,7 +69,7 @@ class SalesInvoice(Document):
 		ledger_entry_doc2 = frappe.get_doc({
 			'doctype': 'Ledger Entry',
 			'posting_date': self.posting_date,
-			'account': 'Debtors',
+			'account': debtors_account,
 			'debit': 0,
 			'credit': self.grand_total,
 			'voucher_type': 'Sales Invoice',

@@ -80,14 +80,14 @@
    "fieldname": "account_type",
    "fieldtype": "Select",
    "label": "Account Type",
-   "options": "Income\nExpense\nAsset\nLiability",
+   "options": "Income\nExpense\nAsset\nLiability\nReceivable\nPayable",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-07-30 19:21:43.134604",
+ "modified": "2021-07-30 19:50:19.726069",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Account",

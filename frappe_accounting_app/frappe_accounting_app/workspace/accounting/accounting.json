@@ -21,7 +21,6 @@
    "label": "Transactions",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Card Break"
   },
   {
@@ -31,7 +30,6 @@
    "link_to": "Sales Invoice",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -41,7 +39,6 @@
    "link_to": "Purchase Invoice",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -51,7 +48,6 @@
    "link_to": "Journal Entry",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -60,7 +56,6 @@
    "label": "Masters",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Card Break"
   },
   {
@@ -70,7 +65,6 @@
    "link_to": "Item",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -80,7 +74,6 @@
    "link_to": "Customer",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -90,7 +83,6 @@
    "link_to": "Supplier",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -100,7 +92,6 @@
    "link_to": "Account",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -109,7 +100,6 @@
    "label": "Reports",
    "link_type": "DocType",
    "onboard": 0,
-   "only_for": "",
    "type": "Card Break"
   },
   {
@@ -119,7 +109,6 @@
    "link_to": "Profit and Loss",
    "link_type": "Report",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -129,7 +118,6 @@
    "link_to": "Balance Sheet",
    "link_type": "Report",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   },
   {
@@ -139,11 +127,10 @@
    "link_to": "General Ledger",
    "link_type": "Report",
    "onboard": 0,
-   "only_for": "",
    "type": "Link"
   }
  ],
- "modified": "2021-07-28 21:10:21.722898",
+ "modified": "2021-07-30 14:05:13.407458",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Accounting",
@@ -181,5 +168,6 @@
    "link_to": "General Ledger",
    "type": "Report"
   }
- ]
+ ],
+ "shortcuts_label": ""
 }
