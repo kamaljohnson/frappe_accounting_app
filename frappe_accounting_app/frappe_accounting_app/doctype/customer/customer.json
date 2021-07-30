@@ -28,7 +28,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-07-16 10:36:21.990261",
+ "modified": "2021-07-30 22:51:45.459543",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Customer",
@@ -47,6 +47,7 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

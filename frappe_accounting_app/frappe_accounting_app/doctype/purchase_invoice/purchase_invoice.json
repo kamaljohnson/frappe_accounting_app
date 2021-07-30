@@ -71,7 +71,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-07-29 10:42:07.440646",
+ "modified": "2021-07-30 22:47:57.596940",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Purchase Invoice",
@@ -90,7 +90,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

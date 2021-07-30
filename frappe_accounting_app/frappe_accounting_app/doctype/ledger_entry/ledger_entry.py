@@ -7,7 +7,6 @@ from frappe.model.document import Document
 
 class LedgerEntry(Document):
 
-	# TODO: fetch fiscal year and set it using the posting date
 	def before_save(self):
 		fiscal_years = frappe.get_all(
 			'Fiscal Year',
