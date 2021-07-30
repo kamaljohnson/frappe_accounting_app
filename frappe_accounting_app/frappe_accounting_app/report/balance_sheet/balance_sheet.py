@@ -47,7 +47,14 @@ def get_data() -> list:
 	# region Set assets using asset accounts from ledger entries
 	total_assets = 0
 
-	asset_accounts = get_descendants_of('Account', 'Application of Funds (Assets)')
+	asset_accounts = frappe.get_all(
+		'Account',
+		filters = {
+			'balance_type': ['=', 'Debit'],
+			'report_type': ['=', 'Balance Sheet']
+		},
+		pluck = 'name'
+	)
 
 	data.append({
 		'indent': 0,
@@ -87,7 +94,14 @@ def get_data() -> list:
 	# region Set liabilities using liability accounts from ledger entries
 	total_liabilities = 0
 
-	liability_accounts = get_descendants_of('Account', 'Source of Funds (Liabilities)')
+	liability_accounts = frappe.get_all(
+		'Account',
+		filters = {
+			'balance_type': ['=', 'Credit'],
+			'report_type': ['=', 'Balance Sheet']
+		},
+		pluck = 'name'
+	)
 
 	data.append({
 		'indent': 0,
