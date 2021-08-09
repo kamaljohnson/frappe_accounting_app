@@ -62,8 +62,6 @@ def get_data(filters=None) -> list:
 	"""
 	data = []
 
-
-
 	if 'from_date' in filters and 'to_date' in filters:
 		if filters['from_date'] > filters['to_date']:
 			frappe.throw(_('from_date should be less than to_date'))
@@ -71,6 +69,9 @@ def get_data(filters=None) -> list:
 
 		filters['posting_date'] = ['>=', filters.pop('from_date')]
 		filters['posting_date'] = ['<=', filters.pop('to_date')]
+
+	if 'account' in filters:
+		filters['account'] = ['in', filters.pop('account')]
 
 	for ledger_entry in frappe.get_all(
 			'Ledger Entry',

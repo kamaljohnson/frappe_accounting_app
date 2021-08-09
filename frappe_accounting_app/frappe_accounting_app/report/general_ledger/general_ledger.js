@@ -20,6 +20,15 @@ frappe.query_reports["General Ledger"] = {
             'label': __('To Date'),
             "default": frappe.datetime.get_today(),
             'fieldtype': 'Date'
+        },
+        {
+            'fieldname': 'account',
+            'label': __('Account'),
+            'fieldtype': 'MultiSelectList',
+            'options': 'Account',
+            get_data: function() {
+				return frappe.db.get_link_options('Account');
+			}
         }
 	]
 };
