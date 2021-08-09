@@ -62,17 +62,27 @@ def get_data(filters=None) -> list:
 	"""
 	data = []
 
+
+
+	if 'from_date' in filters and 'to_date' in filters:
+		if filters['from_date'] > filters['to_date']:
+			frappe.throw(_('from_date should be less than to_date'))
+			return data
+
+		filters['posting_date'] = ['>=', filters.pop('from_date')]
+		filters['posting_date'] = ['<=', filters.pop('to_date')]
+
 	for ledger_entry in frappe.get_all(
-		'Ledger Entry',
-		filters=filters,
-		fields=[
-			'account',
-			'posting_date',
-			'credit',
-			'debit',
-			'voucher_type',
-			'voucher_number'
-		]
+			'Ledger Entry',
+			filters=filters,
+			fields=[
+				'account',
+				'posting_date',
+				'credit',
+				'debit',
+				'voucher_type',
+				'voucher_number'
+			]
 	):
 		data.append({
 			'account': ledger_entry.account,
