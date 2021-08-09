@@ -104,7 +104,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Profit and Loss",
    "link_to": "Profit and Loss",
    "link_type": "Report",
@@ -113,7 +113,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Balance Sheet",
    "link_to": "Balance Sheet",
    "link_type": "Report",
@@ -122,7 +122,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "General Ledger",
    "link_to": "General Ledger",
    "link_type": "Report",
@@ -130,7 +130,7 @@
    "type": "Link"
   }
  ],
- "modified": "2021-07-30 22:42:06.379935",
+ "modified": "2021-08-09 12:37:37.593304",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Accounting",
