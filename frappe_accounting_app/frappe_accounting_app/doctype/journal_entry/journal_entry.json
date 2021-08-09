@@ -7,8 +7,10 @@
  "engine": "InnoDB",
  "field_order": [
   "posting_date",
-  "accounting_entries",
+  "column_break",
   "company",
+  "section_break",
+  "accounting_entries",
   "total_debit",
   "total_credit",
   "amended_from"
@@ -56,12 +58,20 @@
    "options": "Journal Entry",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-06-28 09:38:59.393085",
+ "modified": "2021-08-09 12:08:43.687954",
  "modified_by": "Administrator",
  "module": "Frappe Accounting App",
  "name": "Journal Entry",
