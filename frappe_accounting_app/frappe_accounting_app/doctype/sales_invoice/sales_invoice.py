@@ -9,20 +9,7 @@ from frappe import _
 class SalesInvoice(Document):
 	
 	def before_save(self):
-		"""
-		1. Compute amount field for each sales invoice item
-		2. Calculate the grand_total
-		"""
-		
-		grand_total = 0
-
-		for sales_invoice_item in self.get('items'):
-			amount = flt(sales_invoice_item.rate) * sales_invoice_item.quantity
-			sales_invoice_item.amount = amount
-			grand_total += amount
-
-		self.grand_total = grand_total
-
+		pass
 	
 	def on_submit(self):
 		"""
